@@ -37,38 +37,68 @@ ulong Ackermann(ulong m, ulong n)
             else 
             return Ackermann(m-1, Ackermann(m,n-1));
 }   
-Console.WriteLine("Введите номер решаемой задачи (64,66,68)");
-int taskNumber = int.Parse(Console.ReadLine());
-if (taskNumber==64)
+
+ConsoleKeyInfo exit;
+do
 {
-    Console.WriteLine("Задача 64");
-    Console.WriteLine("Введите число N для задачи 64");
-    int N64 = int.Parse(Console.ReadLine());
-    Console.Write($"Натуральные числа в промежутке от {N64} до 1: "); 
-    ShowNto1 (N64);
+    Console.WriteLine("Введите номер решаемой задачи (64,66,68).");
+    int taskNumber = int.Parse(Console.ReadLine());
+    if (taskNumber==64)
+    {
+        ConsoleKeyInfo exit64;
+        do
+        {
+            Console.WriteLine("Задача 64");
+            Console.WriteLine("Введите число N для задачи 64");
+            int N64 = int.Parse(Console.ReadLine());
+            Console.Write($"Натуральные числа в промежутке от {N64} до 1: "); 
+            ShowNto1 (N64);
+            Console.WriteLine("Для продолжения нажмите с другими данными нажмите любую клавишу, для выхода из задачи нажмите Esc");
+            exit64 = Console.ReadKey(true);              
+        }
+        while (exit64.Key != ConsoleKey.Escape);
+    }
+    else if (taskNumber==66)
+    {
+        ConsoleKeyInfo exit66;
+        do
+        {
+            Console.WriteLine("Задача 66");
+            Console.WriteLine("Введите число M для задачи 66");
+            int M66 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите число N для задачи 66");
+            int N66 = int.Parse(Console.ReadLine());
+            if (N66==M66)
+            Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {M66+N66}");
+                else if (N66>M66)
+                Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {SumMtoN (M66,N66)}");
+                    else
+                    Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {SumMtoN (N66,M66)}");
+            Console.WriteLine("Для продолжения нажмите с другими данными нажмите любую клавишу, для выхода из задачи нажмите Esc");
+            exit66 = Console.ReadKey(true);    
+        }
+        while (exit66.Key != ConsoleKey.Escape);     
+    }
+    else if (taskNumber==68)
+    {
+        ConsoleKeyInfo exit68;
+        do
+        {
+            Console.WriteLine("Задача 66");
+            Console.WriteLine("Введите число m для задачи 68");
+            ulong m68 = ulong.Parse(Console.ReadLine());
+            Console.WriteLine("Введите число n для задачи 68");
+            ulong n68 = ulong.Parse(Console.ReadLine());   
+            Console.WriteLine($"Значение функции Аккермана A(m,n) при m = {m68} и n = {n68}: {Ackermann(m68, n68)}");
+            Console.WriteLine("Для продолжения нажмите с другими данными нажмите любую клавишу, для выхода из задачи нажмите Esc");
+            exit68 = Console.ReadKey(true);    
+        }
+        while (exit68.Key != ConsoleKey.Escape);     
+    }
+    else
+    Console.WriteLine("Не был введён корректный номер задачи.");    
+Console.WriteLine("Для перехода к выбору задачи нажмите любую клавишу, для выхода нажмите Esc");
+exit = Console.ReadKey(true);
 }
-else if (taskNumber==66)
-{
-    Console.WriteLine("Задача 66");
-    Console.WriteLine("Введите число M для задачи 66");
-    int M66 = int.Parse(Console.ReadLine());
-    Console.WriteLine("Введите число N для задачи 66");
-    int N66 = int.Parse(Console.ReadLine());
-    if (N66==M66)
-    Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {M66+N66}");
-        else if (N66>M66)
-        Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {SumMtoN (M66,N66)}");
-            else
-            Console.WriteLine($"Сумма натуральных элементов в промежутке от M до N: {SumMtoN (N66,M66)}");    
-}
-else if (taskNumber==68)
-{
-    Console.WriteLine("Задача 66");
-    Console.WriteLine("Введите число m для задачи 68");
-    ulong m68 = ulong.Parse(Console.ReadLine());
-    Console.WriteLine("Введите число n для задачи 68");
-    ulong n68 = ulong.Parse(Console.ReadLine());   
-    Console.WriteLine($"Значение функции Аккермана A(m,n) при m = {m68} и n = {n68}: {Ackermann(m68, n68)}");
-}
-else
-Console.WriteLine("Не был введён корректный номер задачи.");
+while (exit.Key != ConsoleKey.Escape);
+
